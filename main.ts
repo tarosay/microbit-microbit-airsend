@@ -69,6 +69,9 @@ function SetArryDisp (テキスト: string) {
         arryDisp[カウンター] = val
     }
 }
+serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+    radio.sendString(serial.readUntil(serial.delimiters(Delimiters.NewLine)))
+})
 radio.onReceivedString(function (receivedString) {
     SetArryDisp(receivedString)
     LED_Disp(arryDisp)
@@ -97,6 +100,7 @@ let arryDisp: number[] = []
 radio.setGroup(1)
 radio.setFrequencyBand(7)
 radio.setTransmitSerialNumber(true)
+serial.redirectToUSB()
 arryDisp = [
 0,
 0,
