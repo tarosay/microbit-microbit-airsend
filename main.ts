@@ -69,9 +69,6 @@ function SetArryDisp (テキスト: string) {
         arryDisp[カウンター] = val
     }
 }
-serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-    radio.sendString(serial.readUntil(serial.delimiters(Delimiters.NewLine)))
-})
 radio.onReceivedString(function (receivedString) {
     SetArryDisp(receivedString)
     LED_Disp(arryDisp)
@@ -93,6 +90,13 @@ function LED_Disp (list: any[]) {
         }
     }
 }
+serial.onDataReceived(serial.delimiters(Delimiters.CarriageReturn), function () {
+    serialRcv = serial.readUntil(serial.delimiters(Delimiters.CarriageReturn))
+    radio.sendString(serialRcv)
+    SetArryDisp(serialRcv)
+    LED_Disp(arryDisp)
+})
+let serialRcv = ""
 let b: any = null
 let val = 0
 let m = ""
