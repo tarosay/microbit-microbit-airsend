@@ -63,6 +63,8 @@ function SetArryDisp (テキスト: string) {
             val = 29
         } else if (m == "u") {
             val = 30
+        } else if (m == "v") {
+            val = 31
         } else {
             val = 0
         }
