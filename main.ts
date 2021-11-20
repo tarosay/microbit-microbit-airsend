@@ -103,6 +103,7 @@ let b: any = null
 let val = 0
 let m = ""
 let arryDisp: number[] = []
+led.setBrightness(240)
 radio.setGroup(1)
 radio.setFrequencyBand(7)
 radio.setTransmitSerialNumber(true)
